@@ -1,7 +1,6 @@
 package com.porfolioprojects.APokedex.service;
 
-import com.porfolioprojects.APokedex.entity.UserEntity;
-import com.porfolioprojects.APokedex.entity.UserRolEntity;
+import com.porfolioprojects.APokedex.model.UserModel;
 import com.porfolioprojects.APokedex.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
@@ -25,26 +24,24 @@ public class UserService implements UserDetailsService {
         this.userRepository = userRepository;
     }
 
-    public void save(UserEntity userEntity){
-        userRepository.save(userEntity);
+    public void save(UserModel userModel){
+        userRepository.save(userModel);
     }
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        UserEntity userEntity = userRepository.findById(username)
+        UserModel userModel = userRepository.getByUsername(username)
                 .orElseThrow(() -> new UsernameNotFoundException("User" + username + "Not found"));
 
-        String[] roles = userEntity.getRoles()
-                .stream()
-                .map(UserRolEntity::getRol)
+        String[] roles = userModel.getRoles()
                 .toArray(String[]::new);
 
         return User.builder()
-                .username(userEntity.getUsername())
-                .password(userEntity.getPassword())
+                .username(userModel.getUsername())
+                .password(userModel.getPassword())
                 .authorities(this.grantedAuthorities(roles))
-                .accountLocked(userEntity.getLocked())
-                .disabled(userEntity.getDisabled())
+                .accountLocked(userModel.getLocked())
+                .disabled(userModel.getDisabled())
                 .build();
     }
 
