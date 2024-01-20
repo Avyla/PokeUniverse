@@ -1,20 +1,13 @@
 package com.porfolioprojects.APokedex.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.Data;
 
 import java.time.LocalDateTime;
-
-@Getter
-@Setter
-@NoArgsConstructor
-@AllArgsConstructor
+@Data
 public class UserRolModel {
 
-    private String username;
-    private String rol;
+    private Long userRolId;
     private LocalDateTime grantedDate;
+    private RolModel rol;
 
 }

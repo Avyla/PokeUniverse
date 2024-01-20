@@ -1,6 +1,8 @@
 package com.porfolioprojects.APokedex.mapper;
 
+import com.porfolioprojects.APokedex.entity.RolEntity;
 import com.porfolioprojects.APokedex.entity.UserRolEntity;
+import com.porfolioprojects.APokedex.model.RolModel;
 import com.porfolioprojects.APokedex.model.UserRolModel;
 import org.mapstruct.InheritInverseConfiguration;
 import org.mapstruct.Mapper;
@@ -13,16 +15,15 @@ import java.util.List;
 public interface RolMapper {
 
     @Mappings({
-            @Mapping(source = "username", target = "username"),
+            @Mapping(source = "rolId", target = "rolId"),
             @Mapping(source = "rol", target = "rol"),
-            @Mapping(source = "grantedDate", target = "grantedDate")
     })
-    UserRolModel toUserRolModel(UserRolEntity userRolEntity);
+    RolModel toUserRolModel(RolEntity userRolEntity);
     List<UserRolModel> toUserModels(List<UserRolEntity> userRolEntities);
 
-    @InheritInverseConfiguration
     @Mappings({
-            @Mapping(target = "user", ignore = true)
+            @Mapping(target = "users", ignore = true)
     })
-    UserRolEntity toUserRolEntity(UserRolModel userRolModel);
+    @InheritInverseConfiguration
+    RolEntity toRolEntity(RolModel rolModel);
 }

@@ -10,7 +10,6 @@ import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "user_rol")
-@IdClass(UserRolId.class)
 @Getter
 @Setter
 @NoArgsConstructor
@@ -18,17 +17,19 @@ import java.time.LocalDateTime;
 public class UserRolEntity {
 
     @Id
-    private String username;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "user_rol_id")
+    private Long userRolId;
 
-    @Id
-    private String rol;
-
-    @Column(name = "granted_date", nullable = false, columnDefinition = "DATETIME")
+    @Column(name = "granted_date", columnDefinition = "DATETIME")
     private LocalDateTime grantedDate;
 
     @ManyToOne
-    @JoinColumn(name = "username", referencedColumnName = "username", insertable = false, updatable = false)
+    @JoinColumn(name = "username", referencedColumnName = "username")
     private UserEntity user;
 
+    @ManyToOne
+    @JoinColumn(name = "rol_id", referencedColumnName = "rol_id")
+    private RolEntity rol;
 
 }

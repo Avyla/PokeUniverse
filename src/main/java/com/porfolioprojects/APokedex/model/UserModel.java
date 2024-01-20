@@ -1,24 +1,18 @@
 package com.porfolioprojects.APokedex.model;
 
-
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.Data;
+import lombok.ToString;
 
 import java.util.List;
-
-@Getter
-@Setter
-@NoArgsConstructor
-@AllArgsConstructor
+@Data
+@ToString
 public class UserModel {
 
     private String username;
-    private String email;
     private String password;
-    private Boolean disabled;
+    private String email;
     private Boolean locked;
+    private Boolean disabled;
     private List<UserRolModel> roles;
 
 }
