@@ -9,7 +9,7 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class AbilityEntryAPI {
+public class AbilitiesAPI {
 
     private Boolean is_hiden;
     private Integer slot;

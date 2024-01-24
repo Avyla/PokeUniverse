@@ -13,6 +13,6 @@ public class StatsAPI {
 
     private Integer base_stat;
     private Integer effort;
-    private StatAPI stats;
+    private StatAPI stat;
 
 }

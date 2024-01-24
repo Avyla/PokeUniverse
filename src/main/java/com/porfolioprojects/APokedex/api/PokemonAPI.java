@@ -26,6 +26,6 @@ public class PokemonAPI {
     private SpritesAPI sprites;
     private List<StatsAPI> stats;
     private List<TypesAPI> types;
-    private List<AbilityEntryAPI> abilities;
+    private List<AbilitiesAPI> abilities;
 
 }
