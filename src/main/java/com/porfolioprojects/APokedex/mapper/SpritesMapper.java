@@ -1,6 +1,7 @@
 package com.porfolioprojects.APokedex.mapper;
 
 import com.porfolioprojects.APokedex.api.SpritesAPI;
+import com.porfolioprojects.APokedex.dto.pokemon.SpritesDTO;
 import com.porfolioprojects.APokedex.entity.pokemon.SpritesEntity;
 import org.mapstruct.InheritInverseConfiguration;
 import org.mapstruct.Mapper;
@@ -26,5 +27,17 @@ public interface SpritesMapper {
 
     @InheritInverseConfiguration
     SpritesAPI toSpritesAPI(SpritesEntity spritesEntity);
+
+    @Mappings({
+            @Mapping(source = "backDefault", target = "backDefault"),
+            @Mapping(source = "backFemale", target = "backFemale"),
+            @Mapping(source = "backShiny", target = "backShiny"),
+            @Mapping(source = "backShinyFemale", target = "backShinyFemale"),
+            @Mapping(source = "frontDefault", target = "frontDefault"),
+            @Mapping(source = "frontFemale", target = "frontFemale"),
+            @Mapping(source = "frontShiny", target = "frontShiny"),
+            @Mapping(source = "frontShinyFemale", target = "frontShinyFemale")
+    })
+    SpritesDTO toSpritesDTO(SpritesEntity spritesEntity);
 
 }

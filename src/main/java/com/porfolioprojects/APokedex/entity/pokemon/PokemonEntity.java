@@ -1,10 +1,12 @@
 package com.porfolioprojects.APokedex.entity.pokemon;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 
 import java.net.URL;
 import java.util.List;
+import java.util.Objects;
 
 @Entity
 @Table(name = "pokemon")
@@ -48,6 +50,5 @@ public class PokemonEntity {
 
     @OneToMany(mappedBy = "pokemon", cascade = {CascadeType.ALL}, fetch = FetchType.EAGER)
     private List<AbilitiesEntity> abilities;
-
 
 }

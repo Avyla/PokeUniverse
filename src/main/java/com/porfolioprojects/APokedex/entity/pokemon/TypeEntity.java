@@ -5,6 +5,7 @@ import lombok.*;
 
 import java.net.URL;
 import java.util.List;
+import java.util.Objects;
 
 @Entity
 @Table(name = "type")
@@ -12,7 +13,6 @@ import java.util.List;
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
-@Builder
 public class TypeEntity {
 
     @Id

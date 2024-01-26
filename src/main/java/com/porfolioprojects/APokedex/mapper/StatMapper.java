@@ -1,6 +1,7 @@
 package com.porfolioprojects.APokedex.mapper;
 
 import com.porfolioprojects.APokedex.api.StatAPI;
+import com.porfolioprojects.APokedex.dto.pokemon.StatDTO;
 import com.porfolioprojects.APokedex.entity.pokemon.StatEntity;
 import org.mapstruct.InheritInverseConfiguration;
 import org.mapstruct.Mapper;
@@ -20,5 +21,18 @@ public interface StatMapper {
 
     @InheritInverseConfiguration
     StatAPI toStatAPI(StatEntity statEntity);
+
+    @Mappings({
+            @Mapping(source = "name", target = "name"),
+            @Mapping(source = "url", target = "url")
+    })
+    StatDTO toStatDTO(StatEntity statEntity);
+
+    @InheritInverseConfiguration
+    @Mappings({
+            @Mapping(target = "statId", ignore = true),
+            @Mapping(target = "pokemons", ignore = true)
+    })
+    StatEntity toStatEntity(StatDTO statDTO);
 
 }

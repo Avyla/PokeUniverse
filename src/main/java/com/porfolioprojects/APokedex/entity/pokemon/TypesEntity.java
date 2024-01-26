@@ -3,13 +3,14 @@ package com.porfolioprojects.APokedex.entity.pokemon;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.Objects;
+
 @Entity
 @Table(name = "types")
 @Setter
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
-@Builder
 public class TypesEntity {
 
     @Id
@@ -20,7 +21,7 @@ public class TypesEntity {
     private Integer slot;
 
     @ManyToOne
-    @JoinColumn(name = "types_type_id")
+    @JoinColumn(name = "types_type_id", updatable = true,insertable = true)
     private TypeEntity type;
 
     @ManyToOne

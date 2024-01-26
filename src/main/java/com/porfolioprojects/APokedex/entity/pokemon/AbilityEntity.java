@@ -5,6 +5,7 @@ import lombok.*;
 
 import java.net.URL;
 import java.util.List;
+import java.util.Objects;
 
 @Entity
 @Table(name = "ability")
@@ -12,7 +13,6 @@ import java.util.List;
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
-@Builder
 public class AbilityEntity {
 
     @Id
@@ -26,4 +26,5 @@ public class AbilityEntity {
 
     @OneToMany(mappedBy = "ability")
     private List<AbilitiesEntity> pokemons;
+
 }

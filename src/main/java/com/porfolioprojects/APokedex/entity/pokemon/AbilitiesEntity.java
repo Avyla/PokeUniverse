@@ -1,8 +1,10 @@
 package com.porfolioprojects.APokedex.entity.pokemon;
 
-import com.porfolioprojects.APokedex.api.AbilityAPI;
 import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.proxy.HibernateProxy;
+
+import java.util.Objects;
 
 @Entity
 @Table(name = "abilities")
@@ -10,7 +12,6 @@ import lombok.*;
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
-@Builder
 public class AbilitiesEntity {
 
     @Id

@@ -3,6 +3,8 @@ package com.porfolioprojects.APokedex.entity.pokemon;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.Objects;
+
 @Entity
 @Table(name = "stats")
 @Setter

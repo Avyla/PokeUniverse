@@ -1,6 +1,7 @@
 package com.porfolioprojects.APokedex.mapper;
 
 import com.porfolioprojects.APokedex.api.TypesAPI;
+import com.porfolioprojects.APokedex.dto.pokemon.TypesDTO;
 import com.porfolioprojects.APokedex.entity.pokemon.TypesEntity;
 import org.mapstruct.InheritInverseConfiguration;
 import org.mapstruct.Mapper;
@@ -20,5 +21,18 @@ public interface TypesMapper {
 
     @InheritInverseConfiguration
     TypesAPI toTypesAPI(TypesEntity typesEntity);
+
+    @Mappings({
+            @Mapping(source = "slot", target = "slot"),
+            @Mapping(source = "type", target = "type"),
+    })
+    TypesDTO toTypesDTO(TypesEntity typesEntity);
+
+    @InheritInverseConfiguration
+    @Mappings({
+            @Mapping(target = "typesId", ignore = true),
+            @Mapping(target = "pokemon", ignore = true),
+    })
+    TypesEntity toTypesEntity(TypesDTO typesDTO);
 
 }

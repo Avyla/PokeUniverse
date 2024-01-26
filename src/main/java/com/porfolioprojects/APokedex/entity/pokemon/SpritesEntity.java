@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.net.URL;
+import java.util.Objects;
 
 @Entity
 @Table(name = "sprites")
