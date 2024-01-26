@@ -11,6 +11,7 @@ import lombok.Setter;
 @NoArgsConstructor
 public class AbilitiesAPI {
 
+    private Integer abilitiesId;
     private Boolean is_hiden;
     private Integer slot;
     private AbilityAPI ability;

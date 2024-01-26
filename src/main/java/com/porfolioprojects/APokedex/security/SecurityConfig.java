@@ -33,11 +33,11 @@ public class SecurityConfig {
                 .cors(Customizer.withDefaults())
                 .sessionManagement((session) -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(authorize -> authorize
-                        .requestMatchers("/prueba/**").permitAll()
-                        .requestMatchers("/auth/login").permitAll()
-                        .requestMatchers("/auth/register").permitAll()
+//                        .requestMatchers("/api/pokemon/**").permitAll()
+//                        .requestMatchers("/auth/login").permitAll()
+//                        .requestMatchers("/auth/register").permitAll()
                         .anyRequest()
-                        .authenticated()
+                        .permitAll()
                 )
                 .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class);
 

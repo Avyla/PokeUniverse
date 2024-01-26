@@ -11,6 +11,7 @@ import lombok.Setter;
 @NoArgsConstructor
 public class StatsAPI {
 
+    private Integer statsId;
     private Integer base_stat;
     private Integer effort;
     private StatAPI stat;

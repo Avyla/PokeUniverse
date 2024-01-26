@@ -11,6 +11,7 @@ import lombok.Setter;
 @NoArgsConstructor
 public class TypesAPI {
 
+    private Integer typesId;
     private Integer slot;
     private TypeAPI type;
 

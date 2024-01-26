@@ -1,13 +1,14 @@
 package com.porfolioprojects.APokedex.entity.pokemon;
 
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 @Entity
 @Table(name = "stats")
 @Setter
 @Getter
+@AllArgsConstructor
+@NoArgsConstructor
 public class StatsEntity {
 
     @Id

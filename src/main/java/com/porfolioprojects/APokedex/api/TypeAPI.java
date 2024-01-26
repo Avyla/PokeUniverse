@@ -13,7 +13,8 @@ import java.net.URL;
 @NoArgsConstructor
 public class TypeAPI {
 
+    private Integer typeId;
     private String name;
-    private URL url;
+    private String url;
 
 }

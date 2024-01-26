@@ -13,7 +13,8 @@ import java.net.URL;
 @NoArgsConstructor
 public class StatAPI {
 
+    private Integer statId;
     private String name;
-    private URL url;
+    private String url;
 
 }

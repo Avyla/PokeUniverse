@@ -1,8 +1,7 @@
 package com.porfolioprojects.APokedex.entity.pokemon;
 
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 import java.net.URL;
 import java.util.List;
@@ -11,6 +10,9 @@ import java.util.List;
 @Table(name = "type")
 @Setter
 @Getter
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
 public class TypeEntity {
 
     @Id

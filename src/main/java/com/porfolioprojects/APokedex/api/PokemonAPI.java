@@ -1,18 +1,15 @@
 package com.porfolioprojects.APokedex.api;
 
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
-import java.net.URL;
 import java.util.List;
 
 @Setter
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
+@Builder
 public class PokemonAPI {
 
     private Integer id;
@@ -22,7 +19,7 @@ public class PokemonAPI {
     private Boolean is_default;
     private Integer order;
     private Integer weight;
-    private URL location_area_encounters;
+    private String location_area_encounters;
     private SpritesAPI sprites;
     private List<StatsAPI> stats;
     private List<TypesAPI> types;

@@ -1,8 +1,7 @@
 package com.porfolioprojects.APokedex.entity.pokemon;
 
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 import java.net.URL;
 
@@ -10,6 +9,9 @@ import java.net.URL;
 @Table(name = "sprites")
 @Setter
 @Getter
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
 public class SpritesEntity {
 
     @Id
@@ -18,30 +20,30 @@ public class SpritesEntity {
     private Integer spritesId;
 
     @Column(name = "back_default")
-    private URL backDefault;
+    private String backDefault;
 
     @Column(name = "back_female")
-    private URL backFemale;
+    private String backFemale;
 
     @Column(name = "back_shiny")
-    private URL back_shiny;
+    private String backShiny;
 
     @Column(name = "back_shiny_female")
-    private URL backShinyFemale;
+    private String backShinyFemale;
 
     @Column(name = "front_default")
-    private URL frontDefault;
+    private String frontDefault;
 
     @Column(name = "front_female")
-    private URL frontFemale;
+    private String frontFemale;
 
     @Column(name = "front_shiny")
-    private URL frontShiny;
+    private String frontShiny;
 
     @Column(name = "front_shiny_female")
-    private URL frontShinyFemale;
+    private String frontShinyFemale;
 
-    @OneToOne(mappedBy = "sprites")
+    @OneToOne(mappedBy = "sprites", cascade = {CascadeType.ALL})
     private PokemonEntity pokemon;
 
 }

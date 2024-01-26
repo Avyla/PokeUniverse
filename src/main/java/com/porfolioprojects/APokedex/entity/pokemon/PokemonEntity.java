@@ -1,8 +1,7 @@
 package com.porfolioprojects.APokedex.entity.pokemon;
 
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 import java.net.URL;
 import java.util.List;
@@ -11,6 +10,8 @@ import java.util.List;
 @Table(name = "pokemon")
 @Setter
 @Getter
+@AllArgsConstructor
+@NoArgsConstructor
 public class PokemonEntity {
 
     @Id
@@ -33,7 +34,7 @@ public class PokemonEntity {
     private Integer weight;
 
     @Column(name = "location_area_encounters")
-    private URL locationAreaEncounters;
+    private String locationAreaEncounters;
 
     @OneToOne(cascade = {CascadeType.ALL}, fetch = FetchType.EAGER)
     @JoinColumn(name = "sprites_id", referencedColumnName = "sprites_id")

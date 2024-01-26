@@ -13,13 +13,14 @@ import java.net.URL;
 @NoArgsConstructor
 public class SpritesAPI {
 
-    private URL back_default;
-    private URL back_female;
-    private URL back_shiny;
-    private URL back_shiny_female;
-    private URL front_default;
-    private URL front_female;
-    private URL front_shiny;
-    private URL front_shiny_female;
+    private Integer spritesId;
+    private String back_default;
+    private String back_female;
+    private String back_shiny;
+    private String back_shiny_female;
+    private String front_default;
+    private String front_female;
+    private String front_shiny;
+    private String front_shinyFemale;
 
 }

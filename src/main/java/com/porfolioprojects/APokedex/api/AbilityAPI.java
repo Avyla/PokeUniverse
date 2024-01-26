@@ -14,7 +14,8 @@ import java.net.URL;
 
 public class AbilityAPI {
 
+    private Integer abilityId;
     private String name;
-    private URL url;
+    private String url;
 
 }

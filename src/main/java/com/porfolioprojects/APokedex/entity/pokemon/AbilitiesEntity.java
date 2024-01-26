@@ -2,13 +2,15 @@ package com.porfolioprojects.APokedex.entity.pokemon;
 
 import com.porfolioprojects.APokedex.api.AbilityAPI;
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 @Entity
 @Table(name = "abilities")
 @Setter
 @Getter
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
 public class AbilitiesEntity {
 
     @Id

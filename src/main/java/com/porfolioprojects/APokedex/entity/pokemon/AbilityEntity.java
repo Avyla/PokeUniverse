@@ -1,16 +1,18 @@
 package com.porfolioprojects.APokedex.entity.pokemon;
 
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 import java.net.URL;
 import java.util.List;
 
 @Entity
 @Table(name = "ability")
-@Getter
 @Setter
+@Getter
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
 public class AbilityEntity {
 
     @Id
