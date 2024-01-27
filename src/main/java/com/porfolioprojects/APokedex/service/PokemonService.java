@@ -4,7 +4,6 @@ import com.porfolioprojects.APokedex.api.PokemonAPI;
 import com.porfolioprojects.APokedex.entity.pokemon.*;
 import com.porfolioprojects.APokedex.mapper.PokemonMapper;
 import com.porfolioprojects.APokedex.repository.*;
-import jakarta.persistence.EntityManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -13,10 +12,7 @@ import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 @Service
 public class PokemonService {
@@ -56,15 +52,15 @@ public class PokemonService {
 
     }
 
-    public PokemonEntity getPokemonByName(String name) {
+    public PokemonEntity getPokemon(String identifier) {
 
-        Optional<PokemonEntity> pokemonEntity = this.pokemonRepository.findByName(name);
+        Optional<PokemonEntity> pokemonEntity = this.pokemonRepository.findByName(identifier);
 
         if (pokemonEntity.isPresent()) {
             return pokemonEntity.get();
         } else {
             try {
-                PokemonEntity pokemon = this.getPokemonApi(name);
+                PokemonEntity pokemon = this.getPokemonApi(identifier);
                 if (pokemon != null) {
                     this.savePokemon(pokemon);
                 }
@@ -76,8 +72,19 @@ public class PokemonService {
 
     }
 
-    public Optional<PokemonEntity> getPokemonById(Integer id) {
-        return this.pokemonRepository.findById(id);
+
+    public Set<PokemonEntity> getHome(){
+
+        Random random = new Random();
+        Set<PokemonEntity> pokemonList = new HashSet<>();
+
+        do{
+            int searchPokemon = random.nextInt(1025) + 1;
+            pokemonList.add(this.getPokemon(Integer.toString(searchPokemon)));
+        }while(pokemonList.size() != 20);
+
+        return pokemonList;
+
     }
 
     @Transactional
