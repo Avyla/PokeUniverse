@@ -12,7 +12,7 @@ import lombok.Setter;
 public class AbilitiesAPI {
 
     private Integer abilitiesId;
-    private Boolean is_hiden;
+    private Boolean is_hidden;
     private Integer slot;
     private AbilityAPI ability;
 

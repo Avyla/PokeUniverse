@@ -12,7 +12,6 @@ import java.util.Objects;
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
-@Builder
 public class SpritesEntity {
 
     @Id

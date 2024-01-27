@@ -1,10 +1,13 @@
 package com.porfolioprojects.APokedex.service;
 
 import com.porfolioprojects.APokedex.api.PokemonAPI;
+import com.porfolioprojects.APokedex.dto.pokemon.PokemonDTO;
+import com.porfolioprojects.APokedex.dto.pokemon.projection.PokemonProjection;
 import com.porfolioprojects.APokedex.entity.pokemon.*;
 import com.porfolioprojects.APokedex.mapper.PokemonMapper;
 import com.porfolioprojects.APokedex.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.crossstore.ChangeSetPersister;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -12,6 +15,7 @@ import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
 
+import javax.swing.text.html.Option;
 import java.util.*;
 
 @Service
@@ -52,43 +56,48 @@ public class PokemonService {
 
     }
 
-    public PokemonEntity getPokemon(String identifier) {
+    public PokemonDTO getPokemon(String identifier){
+
+        try{
+
+            int pokemonId = Integer.parseInt(identifier);
+            Optional<PokemonEntity> pokemonEntity = this.pokemonRepository.findById(pokemonId);
+            if(pokemonEntity.isPresent()){
+                return pokemonMapper.toPokemonDTO(pokemonEntity.get());
+            }
+
+        }catch(NumberFormatException ignored){}
 
         Optional<PokemonEntity> pokemonEntity = this.pokemonRepository.findByName(identifier);
+        if(pokemonEntity.isPresent()){
+            return pokemonMapper.toPokemonDTO(pokemonEntity.get());
+        }
 
-        if (pokemonEntity.isPresent()) {
-            return pokemonEntity.get();
-        } else {
-            try {
-                PokemonEntity pokemon = this.getPokemonApi(identifier);
-                if (pokemon != null) {
-                    this.savePokemon(pokemon);
-                }
-                return pokemon;
-            } catch (HttpClientErrorException.NotFound e) {
-                return null;
+        try{
+
+            PokemonEntity pokemon = this.getPokemonApi(identifier);
+            if (pokemon != null){
+                this.pokemonRepository.save(pokemon);
             }
+
+            return pokemonMapper.toPokemonDTO(pokemon);
+        }catch (HttpClientErrorException.NotFound e){
+            return null;
         }
 
     }
 
 
-    public Set<PokemonEntity> getHome(){
+    public Optional<Set<PokemonProjection>> getHome(){
+        return this.pokemonRepository.generateHome();
+    }
 
-        Random random = new Random();
-        Set<PokemonEntity> pokemonList = new HashSet<>();
-
-        do{
-            int searchPokemon = random.nextInt(1025) + 1;
-            pokemonList.add(this.getPokemon(Integer.toString(searchPokemon)));
-        }while(pokemonList.size() != 20);
-
-        return pokemonList;
-
+    public Optional<Set<PokemonProjection>> getHomeByType(String type){
+        return this.pokemonRepository.generateHomeByType(type);
     }
 
     @Transactional
-    public void savePokemon(PokemonEntity pokemon) {
+    private void savePokemon(PokemonEntity pokemon) {
         PokemonEntity newPokemon = new PokemonEntity();
 
         newPokemon.setPokemonId(pokemon.getPokemonId());
@@ -164,7 +173,7 @@ public class PokemonService {
 
             AbilitiesEntity newAbilities = new AbilitiesEntity();
 
-            newAbilities.setIsHiden(abilities.getIsHiden());
+            newAbilities.setIsHidden(abilities.getIsHidden());
             newAbilities.setSlot(abilities.getSlot());
 
             AbilityEntity existingAbility = this.abilityRepository.findByName(abilities.getAbility().getName());

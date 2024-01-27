@@ -19,8 +19,8 @@ public class AbilitiesEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer abilitiesId;
 
-    @Column(name = "id_hiden", columnDefinition = "TINYINT")
-    private Boolean isHiden;
+    @Column(name = "id_hidden", columnDefinition = "TINYINT")
+    private Boolean isHidden;
 
     private Integer slot;
 

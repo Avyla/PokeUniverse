@@ -13,7 +13,7 @@ public interface AbilitiesMapper {
 
     @Mappings({
             @Mapping(source = "abilitiesId", target = "abilitiesId"),
-            @Mapping(source = "is_hiden", target = "isHiden"),
+            @Mapping(source = "is_hidden", target = "isHidden"),
             @Mapping(source = "slot", target = "slot"),
             @Mapping(source = "ability", target = "ability"),
             @Mapping(target = "pokemon", ignore = true)
@@ -24,7 +24,7 @@ public interface AbilitiesMapper {
     AbilitiesAPI toAbilitiesAPI(AbilitiesEntity abilitiesEntity);
 
     @Mappings({
-            @Mapping(source = "isHiden", target = "isHiden"),
+            @Mapping(source = "isHidden", target = "isHidden"),
             @Mapping(source = "slot", target = "slot"),
             @Mapping(source = "ability", target = "ability")
     })

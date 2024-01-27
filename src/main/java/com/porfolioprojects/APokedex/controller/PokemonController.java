@@ -1,14 +1,19 @@
 package com.porfolioprojects.APokedex.controller;
 
+import com.porfolioprojects.APokedex.dto.pokemon.PokemonDTO;
+import com.porfolioprojects.APokedex.dto.pokemon.projection.PokemonProjection;
 import com.porfolioprojects.APokedex.entity.pokemon.PokemonEntity;
 import com.porfolioprojects.APokedex.mapper.PokemonMapper;
 import com.porfolioprojects.APokedex.service.PokemonService;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.server.ResponseStatusException;
 
+import java.util.Optional;
 import java.util.Set;
 
 @RestController
@@ -23,21 +28,35 @@ public class PokemonController {
 
     //HAY 1025 pokemons
     @GetMapping("/search/{pokemonName}")
-    public ResponseEntity<?> getPokemon(@PathVariable("pokemonName") String pokemonName){
+    public ResponseEntity<PokemonDTO> getPokemonByName(@PathVariable("pokemonName") String identifier){
 
-        PokemonEntity pokemonEntity = this.pokemonService.getPokemon(pokemonName);
+        PokemonDTO pokemonDTO = this.pokemonService.getPokemon(identifier);
 
-        if (pokemonEntity == null){
-            return (ResponseEntity<?>) ResponseEntity.notFound();
-        }else {
-            return ResponseEntity.ok(pokemonEntity);
+        if(pokemonDTO == null){
+            ResponseEntity.notFound().build();
         }
+
+        return ResponseEntity.ok(pokemonDTO);
+
 
     }
 
     @GetMapping("/home")
-    public ResponseEntity<Set<PokemonEntity>> getRandomPokemons(){
-        return ResponseEntity.ok(this.pokemonService.getHome());
+    public ResponseEntity<Set<PokemonProjection>> getRandomPokemons(){
+
+        return this.pokemonService.getHome()
+                .map(ResponseEntity::ok)
+                .orElse(ResponseEntity.notFound().build());
+
+    }
+
+    @GetMapping("/type/{typeName}")
+    public ResponseEntity<Set<PokemonProjection>> getRandomPokemonsByType(@PathVariable("typeName")String typeName){
+
+        return this.pokemonService.getHomeByType(typeName)
+                .map(ResponseEntity::ok)
+                .orElse(ResponseEntity.notFound().build());
+
     }
 
 }

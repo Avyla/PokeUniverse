@@ -11,7 +11,7 @@ import lombok.Setter;
 @AllArgsConstructor
 public class AbilitiesDTO {
 
-    private Boolean isHiden;
+    private Boolean isHidden;
     private Integer slot;
     private AbilityDTO ability;
 
