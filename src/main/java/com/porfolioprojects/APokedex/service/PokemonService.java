@@ -2,12 +2,11 @@ package com.porfolioprojects.APokedex.service;
 
 import com.porfolioprojects.APokedex.api.PokemonAPI;
 import com.porfolioprojects.APokedex.dto.pokemon.PokemonDTO;
-import com.porfolioprojects.APokedex.dto.pokemon.projection.PokemonProjection;
+import com.porfolioprojects.APokedex.dto.projection.PokemonProjection;
 import com.porfolioprojects.APokedex.entity.pokemon.*;
 import com.porfolioprojects.APokedex.mapper.PokemonMapper;
 import com.porfolioprojects.APokedex.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.crossstore.ChangeSetPersister;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -15,7 +14,6 @@ import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
 
-import javax.swing.text.html.Option;
 import java.util.*;
 
 @Service

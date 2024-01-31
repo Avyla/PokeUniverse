@@ -1,4 +1,4 @@
-package com.porfolioprojects.APokedex.dto.pokemon.projection;
+package com.porfolioprojects.APokedex.dto.projection;
 
 import java.util.List;
 

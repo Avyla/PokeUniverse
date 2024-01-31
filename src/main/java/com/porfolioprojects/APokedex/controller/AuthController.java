@@ -5,6 +5,7 @@ import com.porfolioprojects.APokedex.dto.UserRegistrationDTO;
 import com.porfolioprojects.APokedex.model.UserModel;
 import com.porfolioprojects.APokedex.security.JwtUtils;
 import com.porfolioprojects.APokedex.service.UserService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -15,7 +16,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/auth")
+@RequestMapping("/api/user")
 public class AuthController {
 
     private final AuthenticationManager authenticationManager;
@@ -30,7 +31,7 @@ public class AuthController {
     }
 
     @PostMapping("/login")
-    public ResponseEntity<Void> login(@RequestBody LoginDTO loginDto){
+    public ResponseEntity<Void> login(@RequestBody @Valid LoginDTO loginDto){
         UsernamePasswordAuthenticationToken login  =
                 new UsernamePasswordAuthenticationToken(loginDto.getUsername(), loginDto.getPassword());
         Authentication authentication = this.authenticationManager.authenticate(login);
@@ -40,7 +41,7 @@ public class AuthController {
     }
 
     @PostMapping("/register")
-    public ResponseEntity<UserModel> register(@RequestBody UserRegistrationDTO userRegistrationDTO){
+    public ResponseEntity<UserModel> register(@RequestBody @Valid UserRegistrationDTO userRegistrationDTO){
         UserModel userModel = userService.registerUser(userRegistrationDTO);
         return ResponseEntity.status(HttpStatus.CREATED).body(userModel);
     }
